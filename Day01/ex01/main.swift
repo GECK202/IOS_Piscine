@@ -1,0 +1,26 @@
+
+var card1:Card = Card(c: Color.Spade, v:Value.Two)
+let card2: Card = Card(c: Color.Diamond, v:Value.Ace)
+let card3 = Card(c: Color.Spade, v:Value.Two)
+print(card1)
+print(card2)
+print(card3)
+print()
+print(card1.isEqual(card2))
+print(card1.isEqual(card3))
+print(card2.isEqual(card1))
+print(card2.isEqual(card3))
+print(card3.isEqual(card1))
+print(card3.isEqual(card2))
+print()
+card1.color = Color.Diamond
+card1.value = Value.Ace
+print(card1)
+print()
+print(card1.isEqual(card2))
+print(card1.isEqual(card3))
+print(card2.isEqual(card1))
+print(card2.isEqual(card3))
+print(card3.isEqual(card1))
+print(card3.isEqual(card2))
+
