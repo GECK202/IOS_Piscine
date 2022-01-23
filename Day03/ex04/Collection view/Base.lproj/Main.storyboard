@@ -69,10 +69,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEV-ub-u7V">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HEV-ub-u7V">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <gestureRecognizers/>
                                 <connections>
+                                    <outletCollection property="gestureRecognizers" destination="J5v-Hj-wya" appends="YES" id="LFy-TN-eP1"/>
                                     <outletCollection property="gestureRecognizers" destination="YTZ-5i-bBh" appends="YES" id="emh-zP-gld"/>
                                 </connections>
                             </imageView>
@@ -92,6 +93,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8Y-jb-jQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="J5v-Hj-wya">
+                    <connections>
+                        <action selector="PinchGestureRecognizer:" destination="EoZ-4n-8Ah" id="hdS-F2-9Pn"/>
+                    </connections>
+                </pinchGestureRecognizer>
                 <panGestureRecognizer id="YTZ-5i-bBh">
                     <connections>
                         <action selector="PanGestureRecognizer:" destination="EoZ-4n-8Ah" id="8hG-zC-nmT"/>

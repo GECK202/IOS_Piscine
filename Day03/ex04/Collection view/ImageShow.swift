@@ -17,23 +17,18 @@ class ImageShow: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         detailImage.image = selectedImage
-        scaleImage()
     }
     
-    private func scaleImage() {
-        let minBoundsSize = min(detailImage.bounds.size.width, detailImage.bounds.size.height)
-        let maxImageSize = max(detailImage.image!.size.width, detailImage.image!.size.height)
-        let aspect = CGFloat(maxImageSize)/CGFloat(minBoundsSize)
-        detailImage.transform = CGAffineTransform(scaleX: aspect, y: aspect)
+    @IBAction func PinchGestureRecognizer(_ sender: UIPinchGestureRecognizer) {
+        detailImage.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
+        print(detailImage.transform)
     }
+     
     
     @IBAction func PanGestureRecognizer(_ sender: UIPanGestureRecognizer) {
-        
         let translation = sender.translation(in: self.view)
-        
         detailImage.center = CGPoint(x: detailImage.center.x + translation.x, y: detailImage.center.y + translation.y)
         sender.setTranslation(CGPoint.zero, in: self.view)
     }
     
-
 }
