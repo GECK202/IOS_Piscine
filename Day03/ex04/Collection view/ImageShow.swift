@@ -21,7 +21,6 @@ class ImageShow: UIViewController {
     
     @IBAction func PinchGestureRecognizer(_ sender: UIPinchGestureRecognizer) {
         detailImage.transform = CGAffineTransform(scaleX: sender.scale, y: sender.scale)
-        print(detailImage.transform)
     }
      
     
