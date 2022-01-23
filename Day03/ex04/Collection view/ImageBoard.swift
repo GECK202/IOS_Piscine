@@ -12,10 +12,10 @@ import UIKit
 class ImageBoard: UICollectionViewController {
 
     let im :[String] = [
-"https://images-assets.nasa.gov/image/PIA09178/PIA09178~orig.jpg",
+"https://images-assets.nasa.gov/image/PIA09178/PIA09178~orig1.jpg",
 "https://images-assets.nasa.gov/image/PIA18033/PIA18033~orig.jpg",
 "https://images-assets.nasa.gov/image/behemoth-black-hole-found-in-an-unlikely-place_26209716511_o/behemoth-black-hole-found-in-an-unlikely-place_26209716511_o~orig.jpg",
-"https://images-assets.nasa.gov/image/as16-113-18339/as16-113-18339~orig.jpg"]
+"https://images-assets.nasa.gov/image/as16-113-18339/as16-113-18339~orig1.jpg"]
     
     var errors = [String]()
     var count = 0

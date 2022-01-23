@@ -95,7 +95,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8Y-jb-jQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="J5v-Hj-wya">
                     <connections>
-                        <action selector="PinchGestureRecognizer:" destination="EoZ-4n-8Ah" id="hdS-F2-9Pn"/>
+                        <action selector="PinchGestureRecognizer:" destination="EoZ-4n-8Ah" id="3W7-ls-8UX"/>
                     </connections>
                 </pinchGestureRecognizer>
                 <panGestureRecognizer id="YTZ-5i-bBh">
