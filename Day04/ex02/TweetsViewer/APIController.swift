@@ -9,9 +9,14 @@
 import Foundation
 
 
+
 class APIController {
     weak var delegate: APITwitterDelegate?
-    let token: String
+    let token: String?
+    
+    init() {
+        self.token = ""
+    }
     
     init(delegate: APITwitterDelegate, token: String) {
         self.delegate = delegate
@@ -19,21 +24,32 @@ class APIController {
     }
     
     func queryRequest(find: String){
-        guard let info = URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=\(find)&count=100&lang=en&result_type=recent".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) else { return }
-               
-        guard let url = URLRequest(url: info) else { return }
-        url.httpMethod = "GET"
-        url.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        //let urlString2 = "https://api.twitter.com/1.1/search/tweets.json?q=\(find)&count=100&lang=en&result_type=recent".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        let urlString = "https://jsonplaceholder.typicode.com/posts"
+        guard let url = URL(string: urlString) else { return }
+        
+        
+                       
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        //request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 self.delegate?.error(error: error! as NSError)
             }
             else
             {
+                guard let response = response, let data = data else { return }
+                print("response=\(response)\n")
                 do {
-                    let dic = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                    print(dic)
+                    let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                    print("json=\(jsonObject)")
+                    /*
                     var t : [Tweet] = []
                     let statuses: [NSDictionary] = (dic["statuses"] as? [NSDictionary])!
                     for d in statuses {
@@ -42,13 +58,13 @@ class APIController {
                         t.append(Tweet(name: name.value(forKey: "name")! as! String, text: text! as! String, date: date! as! String))
                     }
                     self.delegate?.manage(name: t)
+                    */
                 }
-                catch let err
+                catch let error
                 {
-                    print(err)
+                    print(error)
                 }
             }
-        }
-        task.resume()
+        }.resume()
     }
 }

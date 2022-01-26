@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let api = APIController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func ButtonClick(_ sender: UIButton) {
+        api.queryRequest(find: "42")
+    }
+    
 }
 
