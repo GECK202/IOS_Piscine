@@ -10,13 +10,14 @@ import UIKit
 
 struct ShapeModel {
     
-    let size: CGFloat
+    var size: CGFloat
     let color: UIColor
     let type: UIDynamicItemCollisionBoundsType
     let radius: CGFloat
+    let isDeleted = false
     
     init() {
-        size = .random(from: 10, to: 100)
+        size = .random(from: 100, to: 100)
         color = .random()
         let r = CGFloat.random()
         type = (r > 0.5) ? .ellipse : .rectangle

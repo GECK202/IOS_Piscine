@@ -11,7 +11,7 @@ import UIKit
 class ShapeView: UIView {
     
     //let view:UIView
-    let shape: ShapeModel
+    var shape: ShapeModel
     
     init(point: CGPoint) {
         shape = ShapeModel()

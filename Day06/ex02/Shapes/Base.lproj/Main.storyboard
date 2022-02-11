@@ -20,6 +20,8 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="9lJ-qX-6ak" appends="YES" id="zmP-kq-80u"/>
                             <outletCollection property="gestureRecognizers" destination="bAg-MO-9NM" appends="YES" id="hi1-w3-QC3"/>
+                            <outletCollection property="gestureRecognizers" destination="c8y-E2-YwG" appends="YES" id="U4C-LG-34u"/>
+                            <outletCollection property="gestureRecognizers" destination="DNs-Ll-xn9" appends="YES" id="cNH-Ki-AL9"/>
                         </connections>
                     </view>
                 </viewController>
@@ -34,6 +36,16 @@
                         <action selector="panGesture:" destination="BYZ-38-t0r" id="7Nm-xh-B5n"/>
                     </connections>
                 </panGestureRecognizer>
+                <pinchGestureRecognizer id="c8y-E2-YwG">
+                    <connections>
+                        <action selector="pinchRecognizer:" destination="BYZ-38-t0r" id="39v-It-Thj"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <rotationGestureRecognizer id="DNs-Ll-xn9">
+                    <connections>
+                        <action selector="rotationRecognizer:" destination="BYZ-38-t0r" id="h4G-BP-xCh"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="106" y="138"/>
         </scene>
