@@ -17,6 +17,9 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         setupPlacemark()
     }
 

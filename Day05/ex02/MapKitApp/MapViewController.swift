@@ -16,9 +16,13 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        setupPlacemark()
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        setupPlacemark()
+    }
+    
     private func setupPlacemark() {
         let location: String = "96 Bd Bessières, 75017 Paris, France"
         let geocoder = CLGeocoder()
@@ -41,6 +45,8 @@ class MapViewController: UIViewController {
         }
     }
 
+    
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
