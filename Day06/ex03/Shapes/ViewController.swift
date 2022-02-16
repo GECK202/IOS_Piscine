@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController: UIViewController {
-    
+
     var shapeViews:[ShapeView] = [ShapeView]()
     
     var animator: UIDynamicAnimator!
@@ -17,11 +18,40 @@ class ViewController: UIViewController {
     var collider: UICollisionBehavior!
     var bouncingBehavior  : UIDynamicItemBehavior!
     
+    let motionManager = CMMotionManager()
+    let motionQueue = OperationQueue.main
+    
     var currentShapeView: ShapeView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initAnimator()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if motionManager.isAccelerometerAvailable {
+            motionManager.deviceMotionUpdateInterval = 0.01
+            motionManager.startDeviceMotionUpdates(to: motionQueue, withHandler: gravityUpdated as! CMDeviceMotionHandler)
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        motionManager.stopDeviceMotionUpdates()
+    }
+    
+    func gravityUpdated(motion: CMDeviceMotion!, error: NSError!) {
+        if (error != nil) {
+            NSLog("\(String(describing: error))")
+        }
+        let grav : CMAcceleration = motion.gravity;
+        
+        let x = CGFloat(grav.x)
+        let y = CGFloat(grav.y)
+        let v = CGVector(dx: x,dy: y)
+        gravity.gravityDirection = v
     }
     
     private func initAnimator() {
@@ -55,7 +85,7 @@ class ViewController: UIViewController {
         collider.removeItem(item)
         bouncingBehavior.removeItem(item)
     }
-    
+
     private func checkShape(point:CGPoint)->ShapeView? {
         let selectedShapeViews = shapeViews
         for v in selectedShapeViews {
