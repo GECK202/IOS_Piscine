@@ -17,31 +17,45 @@ class ViewController: UIViewController {
     var collider: UICollisionBehavior!
     var bouncingBehavior  : UIDynamicItemBehavior!
     
-    private func addShape(point: CGPoint) {
-        let shapeView = ShapeView(point: point)
-        self.shapeViews.append(shapeView)
-        self.view.addSubview(shapeView)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initAnimator()
     }
     
-    private func addAnimatorAndBehaviors() {
-        
+    private func initAnimator() {
         animator = UIDynamicAnimator(referenceView: self.view)
-        
-        gravity = UIGravityBehavior(items: shapeViews)
+        gravity = UIGravityBehavior()
         animator.addBehavior(gravity)
-        
-        collider = UICollisionBehavior(items: shapeViews)
+        collider = UICollisionBehavior()
         collider.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collider)
-        
-        bouncingBehavior = UIDynamicItemBehavior(items: shapeViews)
+        bouncingBehavior = UIDynamicItemBehavior()
         bouncingBehavior.elasticity = 0.05
         animator.addBehavior(bouncingBehavior)
     }
     
+    private func addShape(point: CGPoint)->ShapeView {
+        let shapeView = ShapeView(point: point)
+        shapeView.translatesAutoresizingMaskIntoConstraints = true
+        self.shapeViews.append(shapeView)
+        self.view.addSubview(shapeView)
+        return shapeView
+    }
+    
+    private func addAnimatorAndBehaviors(item: ShapeView) {
+        gravity.addItem(item)
+        collider.addItem(item)
+        bouncingBehavior.addItem(item)
+    }
+    
+    private func removeAnimatorAndBehaviors(item: ShapeView) {
+        gravity.removeItem(item)
+        collider.removeItem(item)
+        bouncingBehavior.removeItem(item)
+    }
+    
     @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
-        addShape(point: sender.location(in: self.view))
-        addAnimatorAndBehaviors()
+        addAnimatorAndBehaviors(item: addShape(point: sender.location(in: self.view)))
     }
 }
 
